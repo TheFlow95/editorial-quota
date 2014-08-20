@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Editorial Quota
  * Plugin URI: http://theflow95.github.io/editorial-quota
- * Description: Wordpress Plugin to Manage Articles
+ * Description: Wordpress Plugin to Manage Posts' Redaction
  * Version: 1.0
  * Author: TheFlow_
  * Author URI: http://flow.olympe.in
