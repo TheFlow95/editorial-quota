@@ -96,6 +96,7 @@ Class EditorialQuota
 		<div class="wrap">
 		<h2><?php get_admin_page_title() ?></h2>
 		<p>Welcome to the homepage of Editorial Quota</p>
+		<input type="text" value="75" class="dial">
 		</div>
 		<?php
 	}
