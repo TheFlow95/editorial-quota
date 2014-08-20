@@ -40,7 +40,7 @@ Class EditorialQuota
 
 	public function register_settings()
 	{
-	    register_setting('eq_settings', 'eq_role');
+		register_setting('eq_settings', 'eq_role');
 		register_setting('eq_settings', 'eq_quota');
 		add_settings_section('eq_section', '', array($this, 'section_form'), 'eq_settings');
 		add_settings_field('eq_role', 'Authors\' role', array($this, 'role_form'), 'eq_settings', 'eq_section');
@@ -54,9 +54,9 @@ Class EditorialQuota
 	
 	public function role_form()
 	{
-	    echo '<select>';
-	    wp_dropdown_roles(get_option('eq_role'));
-	    echo '</select>';
+		echo '<select>';
+		wp_dropdown_roles(get_option('eq_role'));
+		echo '</select>';
 	}
 
 	public function quota_form()
@@ -84,10 +84,20 @@ Class EditorialQuota
 	
 	public function quota_html()
 	{
-		echo '<div class="wrap">';
-		echo '<h2>'.get_admin_page_title().'</h2>';
-		echo '<p>Welcome to the homepage of Editorial Quota</p>';
-		echo '</div>';
+		?>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+		<script src="js/jquery.knob.js"></script>
+		<script>
+		$(function() {
+			$(".dial").knob();
+		});
+		</script>
+		<div class="wrap">
+		<h2><?php get_admin_page_title() ?></h2>
+		<p>Welcome to the homepage of Editorial Quota</p>
+		</div>
+		<?php
 	}
 }
 
