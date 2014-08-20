@@ -23,6 +23,7 @@
  * Author URI: http://flow.olympe.in
  * License: GPL2
  */
+
 Class EditorialQuota
 {
 	public function __construct()
@@ -82,21 +83,30 @@ Class EditorialQuota
 		echo '</div>';
 	}
 	
+	private function count_user_posts_by_month()
+	{
+    	global $wpdb;
+    	
+    	$userid = wp_get_current_user()->ID;
+    
+    	$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_author = $userid AND post_type = 'post' AND (post_status = 'publish' OR post_status = 'private' OR post_status = 'future') AND MONTH(post_date) = MONTH(NOW())" );
+      	return apply_filters( 'get_usernumposts', $count, $userid );
+    }
+	
 	public function quota_html()
 	{
 		?>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
-		<script src="js/jquery.knob.js"></script>
-		<script>
-		$(function() {
-			$(".dial").knob();
-		});
-		</script>
+		<script src="<?php echo plugins_url( 'js/jquery.knob.js' , __FILE__ ); ?>"></script>
 		<div class="wrap">
-		<h2><?php get_admin_page_title() ?></h2>
-		<p>Welcome to the homepage of Editorial Quota</p>
-		<input type="text" value="75" class="dial">
+		<h2><?php echo get_admin_page_title(); ?></h2>
+		<p>Welcome to the homepage of Editorial Quota. Your goal completion is :</p>
+		<input type="text" value="<?php echo $this->count_user_posts_by_month()*get_option( 'eq_quota' ); ?>" class="knob" data-thickness=".2" data-skin="tron" data-readOnly=true style="box-shadow:none">
+        <script>
+        $(function() {
+            $(".knob").knob();
+        });
+        </script>
 		</div>
 		<?php
 	}
