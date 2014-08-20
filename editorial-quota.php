@@ -1,4 +1,14 @@
 <?php
+/**
+ * Plugin Name: Editorial Quota
+ * Plugin URI: http://theflow95.github.io/editorial-quota
+ * Description: Wordpress Plugin to Manage Articles
+ * Version: 1.0
+ * Author: TheFlow_
+ * Author URI: http://flow.olympe.in
+ * License: GPL2
+ */
+
 /*  Copyright 2014  TheFlow_  (email : theflow@outlook.com)
 
 	This program is free software; you can redistribute it and/or modify
@@ -14,15 +24,6 @@
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-/**
- * Plugin Name: Editorial Quota
- * Plugin URI: http://theflow95.github.io/editorial-quota
- * Description: Wordpress Plugin to Manage Articles
- * Version: 1.0
- * Author: TheFlow_
- * Author URI: http://flow.olympe.in
- * License: GPL2
- */
 
 Class EditorialQuota
 {
@@ -31,12 +32,42 @@ Class EditorialQuota
 		add_action('admin_init', array($this, 'register_settings'));
 		add_action('admin_menu', array($this, 'add_admin_menu'));
 
+		// Default role value
 		if ( get_option( 'eq_role' ) == false ) {
-			update_option( 'eq_role', 'author' );
+			update_option( 'eq_role', array('author') );
 		}
+		// Default quota value
 		if ( get_option( 'eq_quota' ) == false ) {
 			update_option( 'eq_quota', '10' );
 		}
+	}
+	
+	// Custom Wordpress wp_dropdown_roles() function
+	private function wp_dropdown_multiple_roles( $selected = false ) {
+		$p = '';
+		$r = '';
+	 
+		$editable_roles = array_reverse( get_editable_roles() );
+	 
+		foreach ( $editable_roles as $role => $details ) {
+			$name = translate_user_role($details['name'] );
+			if ( is_array($selected) AND in_array($role,$selected) ) // preselect specified role
+				$p .= "\n\t<option selected='selected' value='" . esc_attr($role) . "'>$name</option>";
+			else
+				$r .= "\n\t<option value='" . esc_attr($role) . "'>$name</option>";
+		}
+		echo $p . $r;
+	}
+	
+	// Custom Wordpress count_user_posts() function
+	private function count_user_posts_by_month()
+	{
+		global $wpdb;
+		
+		$userid = wp_get_current_user()->ID;
+	
+		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_author = $userid AND post_type = 'post' AND (post_status = 'publish' OR post_status = 'private' OR post_status = 'future') AND MONTH(post_date) = MONTH(NOW())" );
+		return apply_filters( 'get_usernumposts', $count, $userid );
 	}
 
 	public function register_settings()
@@ -55,8 +86,8 @@ Class EditorialQuota
 	
 	public function role_form()
 	{
-		echo '<select>';
-		wp_dropdown_roles(get_option('eq_role'));
+		echo '<select name="eq_role[]" multiple>';
+		$this->wp_dropdown_multiple_roles(get_option('eq_role'));
 		echo '</select>';
 	}
 
@@ -83,16 +114,6 @@ Class EditorialQuota
 		echo '</div>';
 	}
 	
-	private function count_user_posts_by_month()
-	{
-    	global $wpdb;
-    	
-    	$userid = wp_get_current_user()->ID;
-    
-    	$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_author = $userid AND post_type = 'post' AND (post_status = 'publish' OR post_status = 'private' OR post_status = 'future') AND MONTH(post_date) = MONTH(NOW())" );
-      	return apply_filters( 'get_usernumposts', $count, $userid );
-    }
-	
 	public function quota_html()
 	{
 		?>
@@ -100,13 +121,38 @@ Class EditorialQuota
 		<script src="<?php echo plugins_url( 'js/jquery.knob.js' , __FILE__ ); ?>"></script>
 		<div class="wrap">
 		<h2><?php echo get_admin_page_title(); ?></h2>
-		<p>Welcome to the homepage of Editorial Quota. Your goal completion is :</p>
-		<input type="text" value="<?php echo $this->count_user_posts_by_month()*get_option( 'eq_quota' ); ?>" class="knob" data-thickness=".2" data-skin="tron" data-readOnly=true style="box-shadow:none">
-        <script>
-        $(function() {
-            $(".knob").knob();
-        });
-        </script>
+		<p>Welcome to the homepage of Editorial Quota.</p>
+		<?php
+		// Pour afficher l'erreur
+		$match = 0;
+		foreach (get_option( 'eq_role' ) as $role) {
+			if(current_user_can($role)) {
+				$match = 1;
+				?>
+				<p>Goal completion:</p>
+				<input type="text" value="<?php echo $this->count_user_posts_by_month()*get_option( 'eq_quota' ); ?>" class="knob" data-thickness=".2" data-skin="tron" data-readOnly=true style="box-shadow:none">
+				<script>
+				$(function() {
+					$(".knob").knob();
+				});
+				</script>
+				<p>Posts remaining to reach the goal:</p>
+				<input type="text" value="<?php $remain = get_option( 'eq_quota' )-$this->count_user_posts_by_month(); if ($remain < 0) { echo '0'; } else { echo $remain; } ?>" class="knob2" data-thickness=".2" data-skin="tron" data-readOnly=true data-max="<?php echo get_option( 'eq_quota' ); ?>" style="box-shadow:none">
+				<script>
+				$(function() {
+					$(".knob2").knob();
+				});
+				</script>
+				<?php
+			}
+		}
+		
+		if(!$match) {
+			?>
+			<p>You don't have any goal to reach.</p>
+			<?php
+		}
+		?>
 		</div>
 		<?php
 	}
