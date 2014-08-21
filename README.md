@@ -8,5 +8,4 @@ To install Editorial Quota with Wordpress, download the .zip file, go to Wordpre
 ### With FTP
 To install Editorial Quota with FTP, just upload the directory to wp-content/plugin in your server.
 
-###### Designed for [Frenchmac](http://frenchmac.com)
 ###### Made in France
