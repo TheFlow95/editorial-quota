@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: editorial-quota\n"
+"POT-Creation-Date: 2014-08-21 23:09+0100\n"
+"PO-Revision-Date: 2014-08-21 23:18+0100\n"
+"Last-Translator: \n"
+"Language-Team: TheFlow_ <theflow@outlook.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+"X-Poedit-SearchPath-0: /Users/florentin/GitHub/editorial-quota\n"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:79
+msgid "Users' role"
+msgstr "Rôle des utilisateurs"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:80
+msgid "Users' quota"
+msgstr "Quota des utilisateurs"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:85
+msgid ""
+"Select the roles to which to apply the quota and the posts' quota to perform "
+"by month"
+msgstr ""
+"Choisissez les rôles auxquels appliquer le quota and le quota des article à "
+"effectuer par mois"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:102
+msgid "Editorial Quota Options"
+msgstr "Options d'Editorial Quota"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:103
+msgid "Users' Quota"
+msgstr "Quota des utilisateurs"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:140
+msgid "Hi! You can have a look to users' quota:"
+msgstr "Salut ! Vous pouvez voir les quota des utilisateurs :"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:158
+#, php-format
+msgid "%s's Quota"
+msgstr "Quota de %s"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:164
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:238
+msgid "Quota completion"
+msgstr "Achèvement du quota"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:173
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:247
+msgid "Posts remaining to reach the quota"
+msgstr "Articles restants pour atteindre le quota"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:190
+msgid "There is no user quota"
+msgstr "Aucun utilisateur n'a de quota"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:213
+msgid "Your Quota"
+msgstr "Votre Quota"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:263
+msgid "You don't have any quota to reach."
+msgstr "Vous n'avez aucun quota à atteindre."

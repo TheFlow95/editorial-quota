@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: editorial-quota\n"
+"POT-Creation-Date: 2014-08-21 23:09+0100\n"
+"PO-Revision-Date: 2014-08-21 23:09+0100\n"
+"Last-Translator: \n"
+"Language-Team: TheFlow_ <theflow@outlook.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /Users/florentin/GitHub/editorial-quota\n"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:79
+msgid "Users' role"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:80
+msgid "Users' quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:85
+msgid ""
+"Select the roles to which to apply the quota and the posts' quota to perform "
+"by month"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:102
+msgid "Editorial Quota Options"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:103
+msgid "Users' Quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:140
+msgid "Hi! You can have a look to users' quota:"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:158
+#, php-format
+msgid "%s's Quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:164
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:238
+msgid "Quota completion"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:173
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:247
+msgid "Posts remaining to reach the quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:190
+msgid "There is no user quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:213
+msgid "Your Quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:263
+msgid "You don't have any quota to reach."
+msgstr ""
