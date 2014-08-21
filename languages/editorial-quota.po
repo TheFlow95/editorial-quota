@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: editorial-quota\n"
+"POT-Creation-Date: 2014-08-21 01:57+0100\n"
+"PO-Revision-Date: 2014-08-21 01:57+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /Users/florentin/GitHub/editorial-quota\n"
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:80
+msgid "Authors' role"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:81
+msgid "Authors' quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:86
+msgid ""
+"Select the role to which to apply the quota and the posts' quota to perform "
+"by month"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:103
+msgid "Editorial Quota Options"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:104
+msgid "Quota"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:132
+msgid "Welcome to the homepage of Editorial Quota."
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:140
+msgid "Goal completion"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:147
+msgid "Posts remaining to reach the goal"
+msgstr ""
+
+#: /Users/florentin/GitHub/editorial-quota/editorial-quota.php:160
+msgid "You don't have any goal to reach."
+msgstr ""

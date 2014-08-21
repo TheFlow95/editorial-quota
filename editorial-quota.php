@@ -6,6 +6,7 @@
  * Version: 1.0
  * Author: TheFlow_
  * Author URI: http://flow.olympe.in
+ * Text Domain: editorial-quota
  * License: GPL2
  */
 
@@ -31,6 +32,7 @@ Class EditorialQuota
 	{
 		add_action('admin_init', array($this, 'register_settings'));
 		add_action('admin_menu', array($this, 'add_admin_menu'));
+		add_action( 'plugins_loaded', 'editorial_quota_load_plugin_textdomain' );
 
 		// Default role value
 		if ( get_option( 'eq_role' ) == false ) {
@@ -75,13 +77,13 @@ Class EditorialQuota
 		register_setting('eq_settings', 'eq_role');
 		register_setting('eq_settings', 'eq_quota');
 		add_settings_section('eq_section', '', array($this, 'section_form'), 'eq_settings');
-		add_settings_field('eq_role', 'Authors\' role', array($this, 'role_form'), 'eq_settings', 'eq_section');
-		add_settings_field('eq_quota', 'Authors\' quota', array($this, 'quota_form'), 'eq_settings', 'eq_section');
+		add_settings_field('eq_role', __( 'Authors\' role', 'editorial-quota' ), array($this, 'role_form'), 'eq_settings', 'eq_section');
+		add_settings_field('eq_quota', __( 'Authors\' quota', 'editorial-quota' ), array($this, 'quota_form'), 'eq_settings', 'eq_section');
 	}
 
 	public function section_form()
 	{
-		echo '<p>Select the role to which to apply the quota and the posts\' quota to perform by month</p>';
+		echo '<p>'.__( 'Select the role to which to apply the quota and the posts\' quota to perform by month', 'editorial-quota' ).'</p>';
 	}
 	
 	public function role_form()
@@ -98,8 +100,14 @@ Class EditorialQuota
 
 	public function add_admin_menu()
 	{
-		add_options_page( 'Editorial Quota Options', 'Editorial Quota', 'manage_options', 'editorial-quota', array($this, 'menu_html') );
-		add_management_page( 'Quota', 'Quota', 'publish_posts', 'quota', array($this, 'quota_html') );
+		add_options_page( __( 'Editorial Quota Options', 'editorial-quota' ), 'Editorial Quota', 'manage_options', 'editorial-quota', array($this, 'menu_html') );
+		add_management_page( __( 'Quota', 'editorial-quota' ), __( 'Quota', 'editorial-quota' ), 'publish_posts', 'quota', array($this, 'quota_html') );
+	}
+
+	// Internationalization
+	public function editorial_quota_load_plugin_textdomain()
+	{
+		load_plugin_textdomain('editorial-quota', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	public function menu_html()
@@ -121,7 +129,7 @@ Class EditorialQuota
 		<script src="<?php echo plugins_url( 'js/jquery.knob.js' , __FILE__ ); ?>"></script>
 		<div class="wrap">
 		<h2><?php echo get_admin_page_title(); ?></h2>
-		<p>Welcome to the homepage of Editorial Quota.</p>
+		<p><?php _e( 'Welcome to the homepage of Editorial Quota.', 'editorial-quota' ); ?></p>
 		<?php
 		// Pour afficher l'erreur
 		$match = 0;
@@ -129,14 +137,14 @@ Class EditorialQuota
 			if(current_user_can($role)) {
 				$match = 1;
 				?>
-				<p>Goal completion:</p>
+				<p><?php _e( 'Goal completion', 'editorial-quota' ); ?>:</p>
 				<input type="text" value="<?php echo $this->count_user_posts_by_month()*get_option( 'eq_quota' ); ?>" class="knob" data-thickness=".2" data-skin="tron" data-readOnly=true style="box-shadow:none">
 				<script>
 				$(function() {
 					$(".knob").knob();
 				});
 				</script>
-				<p>Posts remaining to reach the goal:</p>
+				<p><?php _e( 'Posts remaining to reach the goal', 'editorial-quota' ); ?>:</p>
 				<input type="text" value="<?php $remain = get_option( 'eq_quota' )-$this->count_user_posts_by_month(); if ($remain < 0) { echo '0'; } else { echo $remain; } ?>" class="knob2" data-thickness=".2" data-skin="tron" data-readOnly=true data-max="<?php echo get_option( 'eq_quota' ); ?>" style="box-shadow:none">
 				<script>
 				$(function() {
@@ -149,7 +157,7 @@ Class EditorialQuota
 		
 		if(!$match) {
 			?>
-			<p>You don't have any goal to reach.</p>
+			<p><?php _e( 'You don\'t have any goal to reach.', 'editorial-quota' ); ?></p>
 			<?php
 		}
 		?>
